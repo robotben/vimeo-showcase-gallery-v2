@@ -345,8 +345,6 @@ body {
   margin-top: 0;
 }
 .player-wrap.open { grid-template-rows: 1fr; margin-top: 2rem; }
-.player-wrap[aria-hidden="true"] .player-inner { visibility: hidden; }
-.player-wrap.open .player-inner { visibility: visible; }
 
 .player-inner {
   position: relative;
