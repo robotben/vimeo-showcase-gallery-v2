@@ -188,13 +188,13 @@ function renderGalleries(showcases) {
         </div>
         <div class="player-wrap" id="player-${safeId}" aria-hidden="true">
           <div class="player-inner">
-            <iframe class="showcase-iframe"
-                    src="${escHtml(toEmbedUrl(s.url))}"
-                    scrolling="no"
-                    allowfullscreen
-                    frameborder="0"
-                    loading="eager"
-                    title="${escHtml(s.title)}"></iframe>
+            <div class="player-ratio">
+              <iframe class="showcase-iframe"
+                      src="${escHtml(toEmbedUrl(s.url))}"
+                      allow="autoplay; fullscreen; picture-in-picture; gyroscope; accelerometer; clipboard-write; encrypted-media; web-share"
+                      frameborder="0"
+                      title="${escHtml(s.title)}"></iframe>
+            </div>
           </div>
         </div>
       </article>`;
@@ -261,18 +261,6 @@ function initScrollFeatures(navIds) {
     });
   }, { passive: true });
 
-  // Vimeo showcase auto-height
-  window.addEventListener('message', e => {
-    if (!['https://vimeo.com', 'https://player.vimeo.com'].includes(e.origin)) return;
-    let data;
-    try { data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch { return; }
-    const h = data?.data?.height ?? data?.height ?? data?.value ??
-              (data?.event === 'resize' && data?.data?.height);
-    if (!h || typeof h !== 'number' || h < 100) return;
-    document.querySelectorAll('.showcase-iframe').forEach(iframe => {
-      if (iframe.contentWindow === e.source) iframe.style.height = h + 'px';
-    });
-  });
 }
 
 // ── Scroll-reveal ─────────────────────────────────────────
@@ -311,12 +299,6 @@ function initGalleryToggles() {
         player.setAttribute('aria-hidden', 'true');
         btn.setAttribute('aria-expanded', 'false');
         btn.querySelector('.btn-label').textContent = 'Open Gallery';
-        // Reset iframe height after collapse animation finishes so the
-        // height change doesn't disrupt the animation mid-way.
-        setTimeout(() => {
-          const iframe = player.querySelector('.showcase-iframe');
-          if (iframe) iframe.style.height = '';
-        }, 560);
         // After collapsing, scroll back to the top of the galleries section —
         // same position as a fresh /#galleries load.
         setTimeout(() => {
