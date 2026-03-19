@@ -317,14 +317,10 @@ function initGalleryToggles() {
           const iframe = player.querySelector('.showcase-iframe');
           if (iframe) iframe.style.height = '';
         }, 560);
-        // After collapsing, scroll the gallery header back into view
-        // if it ended up off-screen during playback.
+        // After collapsing, scroll back to the top of the galleries section —
+        // same position as a fresh /#galleries load.
         setTimeout(() => {
-          const block = btn.closest('.gallery-block');
-          const rect  = block.getBoundingClientRect();
-          if (rect.top < 0 || rect.top > window.innerHeight * 0.8) {
-            block.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+          document.getElementById('galleries').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 560);
       } else {
         player.classList.add('open');
