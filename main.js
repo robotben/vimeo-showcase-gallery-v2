@@ -188,13 +188,13 @@ function renderGalleries(showcases) {
         </div>
         <div class="player-wrap" id="player-${safeId}" aria-hidden="true">
           <div class="player-inner">
-            <div class="player-ratio">
-              <iframe class="showcase-iframe"
-                      src="${escHtml(toEmbedUrl(s.url))}"
-                      allow="autoplay; fullscreen; picture-in-picture; gyroscope; accelerometer; clipboard-write; encrypted-media; web-share"
-                      frameborder="0"
-                      title="${escHtml(s.title)}"></iframe>
-            </div>
+            <iframe class="showcase-iframe"
+                    src="${escHtml(toEmbedUrl(s.url))}?height=300px"
+                    scrolling="no"
+                    allowfullscreen
+                    frameborder="0"
+                    loading="eager"
+                    title="${escHtml(s.title)}"></iframe>
           </div>
         </div>
       </article>`;

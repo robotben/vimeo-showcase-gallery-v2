@@ -365,17 +365,11 @@ body {
   z-index: 1;
 }
 
-.player-ratio {
-  padding: 56.25% 0 0 0; /* 16:9 aspect ratio */
-  position: relative;
-}
-
 .showcase-iframe {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  border: 0;
   display: block;
+  width: 100%;
+  height: 1420px;
+  border: 0;
 }
 
 .section-divider {
