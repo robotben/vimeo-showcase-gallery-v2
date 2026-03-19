@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery Config</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="config-body">
+
+  <div class="config-page">
+
+    <!-- Header -->
+    <header class="config-header">
+      <div>
+        <h1 class="config-title">Gallery Config</h1>
+        <p class="config-subtitle">Manage your video showcase</p>
+      </div>
+      <button class="btn btn-primary" id="save-btn">Save Changes</button>
+    </header>
+
+    <!-- JSONBin Connection -->
+    <section class="config-section">
+      <h2 class="config-section-title">JSONBin Connection</h2>
+
+      <div class="field-group">
+        <label class="field-label" for="bin-id">Bin ID</label>
+        <input class="field-input" type="text" id="bin-id"
+               placeholder="65f2a3b7ad3d2369f4dd56b2" autocomplete="off" />
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="master-key">Master Key</label>
+        <input class="field-input" type="password" id="master-key"
+               placeholder="$2a$10$..." autocomplete="off" />
+      </div>
+
+      <div class="connection-row">
+        <div class="connection-status">
+          <div class="status-dot" id="status-dot"></div>
+          <span id="status-text">Not connected</span>
+        </div>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <a class="help-link"
+             href="https://jsonbin.io"
+             target="_blank"
+             rel="noopener noreferrer">Need a free JSONBin account? →</a>
+          <button class="btn btn-secondary" id="connect-btn">Connect</button>
+        </div>
+      </div>
+
+      <div class="share-url-section" id="share-url-section" hidden>
+        <p class="field-label">Share URL — send this to viewers</p>
+        <div class="share-url-box" id="share-url-box" title="Click to copy"></div>
+        <p class="share-url-hint">Click to copy · Viewers' browsers remember this URL after first visit</p>
+      </div>
+    </section>
+
+    <!-- Page sections -->
+    <section class="config-section" id="sections-config" hidden>
+      <h2 class="config-section-title">Page Sections</h2>
+
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-label">Featured Galleries</div>
+          <div class="toggle-desc">Visual card grid that links to each showcase in a new tab</div>
+        </div>
+        <label class="switch" aria-label="Toggle featured galleries section">
+          <input type="checkbox" id="toggle-featured" checked />
+          <span class="switch-slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-label">Expanding Galleries</div>
+          <div class="toggle-desc">Embedded Vimeo players that open inline</div>
+        </div>
+        <label class="switch" aria-label="Toggle expanding galleries section">
+          <input type="checkbox" id="toggle-galleries" checked />
+          <span class="switch-slider"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Showcases -->
+    <section class="config-section" id="showcases-config" hidden>
+      <h2 class="config-section-title">Showcases</h2>
+
+      <div class="showcase-list" id="showcase-list"></div>
+
+      <!-- Add / edit form -->
+      <div class="add-form">
+        <p class="add-form-title" id="add-form-title">Add Showcase</p>
+
+        <div class="field-group">
+          <label class="field-label" for="sc-title">Title</label>
+          <input class="field-input" type="text" id="sc-title" placeholder="My Gallery" />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="sc-url">Vimeo Showcase URL</label>
+          <input class="field-input" type="url" id="sc-url"
+                 placeholder="https://vimeo.com/showcase/..." />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Color</label>
+          <div class="color-field">
+            <label class="color-swatch" title="Open color picker (eyedropper available in Chrome/Edge)">
+              <input type="color" id="sc-color-picker" value="#36C5F0" />
+            </label>
+            <input class="field-input color-hex" type="text" id="sc-color-hex"
+                   value="#36C5F0" placeholder="#36C5F0" maxlength="7" spellcheck="false" />
+          </div>
+        </div>
+
+        <div class="add-form-actions">
+          <button class="btn btn-success" id="add-btn">Add Showcase</button>
+          <button class="btn btn-secondary" id="cancel-btn" hidden>Cancel Edit</button>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.config-page -->
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="config.js"></script>
+</body>
+</html>

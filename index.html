@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Showcase Gallery</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://player.vimeo.com" crossorigin />
+  <link rel="preconnect" href="https://vimeo.com" crossorigin />
+  <link rel="dns-prefetch" href="https://f.vimeocdn.com" />
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="logo-wrap">
+        <svg class="slack-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Logo">
+          <rect x="57" y="20" width="28" height="80" rx="14" fill="#36C5F0"/>
+          <circle cx="71" cy="34" r="14" fill="#36C5F0"/>
+          <rect x="115" y="20" width="28" height="80" rx="14" fill="#2EB67D"/>
+          <circle cx="129" cy="34" r="14" fill="#2EB67D"/>
+          <rect x="57" y="100" width="28" height="80" rx="14" fill="#E01E5A"/>
+          <circle cx="71" cy="166" r="14" fill="#E01E5A"/>
+          <rect x="115" y="100" width="28" height="80" rx="14" fill="#ECB22E"/>
+          <circle cx="129" cy="166" r="14" fill="#ECB22E"/>
+          <rect x="20" y="57" width="80" height="28" rx="14" fill="#36C5F0"/>
+          <circle cx="34" cy="71" r="14" fill="#36C5F0"/>
+          <rect x="100" y="57" width="80" height="28" rx="14" fill="#ECB22E"/>
+          <circle cx="166" cy="71" r="14" fill="#ECB22E"/>
+          <rect x="20" y="115" width="80" height="28" rx="14" fill="#E01E5A"/>
+          <circle cx="34" cy="129" r="14" fill="#E01E5A"/>
+          <rect x="100" y="115" width="80" height="28" rx="14" fill="#2EB67D"/>
+          <circle cx="166" cy="129" r="14" fill="#2EB67D"/>
+        </svg>
+      </div>
+      <h1 class="hero-title">Video Showcase</h1>
+      <p class="hero-sub" id="hero-sub">Scroll down to explore featured galleries</p>
+      <a href="#folders" class="scroll-cta" id="scroll-cta" aria-label="Scroll down">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </a>
+    </div>
+    <div class="orb orb-blue"></div>
+    <div class="orb orb-green"></div>
+    <div class="orb orb-pink"></div>
+    <div class="orb orb-yellow"></div>
+  </section>
+
+  <!-- ── FEATURED FOLDERS ── -->
+  <section class="folders-section" id="folders" hidden>
+    <div class="orb orb-f-green"></div>
+    <div class="orb orb-f-blue"></div>
+    <div class="orb orb-f-pink"></div>
+    <div class="orb orb-f-yellow"></div>
+    <a href="#hero" class="section-cta section-cta--up" aria-label="Scroll up to hero">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+      </svg>
+    </a>
+    <div class="folders-inner" data-reveal>
+      <h2 class="folders-heading">Featured galleries</h2>
+      <div class="folders-grid" id="folders-grid"></div>
+    </div>
+    <a href="#galleries" class="section-cta" id="folders-down-arrow" aria-label="Scroll to galleries">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- ── GALLERIES ── -->
+  <section class="galleries" id="galleries" hidden>
+    <div class="orb orb-g-pink"></div>
+    <div class="orb orb-g-yellow"></div>
+    <div class="orb orb-g-blue"></div>
+    <div class="orb orb-g-green"></div>
+    <a href="#folders" class="section-cta section-cta--up" id="galleries-up-arrow" aria-label="Scroll up">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+      </svg>
+    </a>
+    <div id="galleries-inner"></div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <svg class="footer-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="57" y="20" width="28" height="80" rx="14" fill="#36C5F0"/>
+      <circle cx="71" cy="34" r="14" fill="#36C5F0"/>
+      <rect x="115" y="20" width="28" height="80" rx="14" fill="#2EB67D"/>
+      <circle cx="129" cy="34" r="14" fill="#2EB67D"/>
+      <rect x="57" y="100" width="28" height="80" rx="14" fill="#E01E5A"/>
+      <circle cx="71" cy="166" r="14" fill="#E01E5A"/>
+      <rect x="115" y="100" width="28" height="80" rx="14" fill="#ECB22E"/>
+      <circle cx="129" cy="166" r="14" fill="#ECB22E"/>
+      <rect x="20" y="57" width="80" height="28" rx="14" fill="#36C5F0"/>
+      <circle cx="34" cy="71" r="14" fill="#36C5F0"/>
+      <rect x="100" y="57" width="80" height="28" rx="14" fill="#ECB22E"/>
+      <circle cx="166" cy="71" r="14" fill="#ECB22E"/>
+      <rect x="20" y="115" width="80" height="28" rx="14" fill="#E01E5A"/>
+      <circle cx="34" cy="129" r="14" fill="#E01E5A"/>
+      <rect x="100" y="115" width="80" height="28" rx="14" fill="#2EB67D"/>
+      <circle cx="166" cy="129" r="14" fill="#2EB67D"/>
+    </svg>
+    <p>Video Showcase Gallery</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

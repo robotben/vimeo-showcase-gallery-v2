@@ -1,0 +1,3 @@
+name = "vimeo-showcase-gallery-v2"
+compatibility_date = "2025-03-01"
+pages_build_output_dir = "."
