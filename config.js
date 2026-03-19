@@ -183,9 +183,10 @@ function renderShowcaseList() {
 // ── Add / update ──────────────────────────────────────────
 
 function handleAddOrUpdate() {
-  const title = document.getElementById('sc-title').value.trim();
-  const url   = document.getElementById('sc-url').value.trim();
-  const color = document.getElementById('sc-color-hex').value.trim() || '#36C5F0';
+  const title  = document.getElementById('sc-title').value.trim();
+  const url    = document.getElementById('sc-url').value.trim();
+  const color  = document.getElementById('sc-color-hex').value.trim() || '#36C5F0';
+  const height = parseInt(document.getElementById('sc-height').value, 10) || 1420;
 
   if (!title) { toast('Enter a title', 'error'); return; }
   if (!url)   { toast('Enter a Vimeo showcase URL', 'error'); return; }
@@ -194,11 +195,11 @@ function handleAddOrUpdate() {
 
   if (editingId) {
     const idx = config.showcases.findIndex(s => s.id === editingId);
-    if (idx !== -1) config.showcases[idx] = { ...config.showcases[idx], title, url, color };
+    if (idx !== -1) config.showcases[idx] = { ...config.showcases[idx], title, url, color, height };
     cancelEdit();
     toast('Showcase updated');
   } else {
-    config.showcases.push({ id: uid(), title, url, color });
+    config.showcases.push({ id: uid(), title, url, color, height });
     clearForm();
     toast('Showcase added');
   }
@@ -213,9 +214,10 @@ function startEdit(id) {
   if (!s) return;
   editingId = id;
 
-  document.getElementById('sc-title').value       = s.title;
-  document.getElementById('sc-url').value         = s.url;
-  document.getElementById('sc-color-hex').value   = s.color || '#36C5F0';
+  document.getElementById('sc-title').value        = s.title;
+  document.getElementById('sc-url').value          = s.url;
+  document.getElementById('sc-height').value       = s.height || 1420;
+  document.getElementById('sc-color-hex').value    = s.color || '#36C5F0';
   document.getElementById('sc-color-picker').value = s.color || '#36C5F0';
 
   document.getElementById('add-form-title').textContent = 'Edit Showcase';
@@ -283,6 +285,7 @@ function setStatus(type, msg) {
 function clearForm() {
   document.getElementById('sc-title').value        = '';
   document.getElementById('sc-url').value          = '';
+  document.getElementById('sc-height').value       = 1420;
   document.getElementById('sc-color-hex').value    = '#36C5F0';
   document.getElementById('sc-color-picker').value = '#36C5F0';
 }

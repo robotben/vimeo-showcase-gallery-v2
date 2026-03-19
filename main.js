@@ -196,6 +196,7 @@ function renderGalleries(showcases) {
                     allowfullscreen
                     frameborder="0"
                     loading="eager"
+                    style="height:${s.height || 1420}px"
                     title="${escHtml(s.title)}"></iframe>
           </div>
         </div>
