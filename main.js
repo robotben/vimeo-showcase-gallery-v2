@@ -50,7 +50,9 @@ async function init() {
     history.replaceState(null, '', location.pathname);
   }
 
-  const binId = localStorage.getItem('vsg_bin_id') || DEFAULT_BIN_ID;
+  // Always reset to hardcoded default to clear any stale localStorage values
+  localStorage.setItem('vsg_bin_id', DEFAULT_BIN_ID);
+  const binId = DEFAULT_BIN_ID;
 
   if (!binId) {
     document.getElementById('hero-sub').innerHTML =

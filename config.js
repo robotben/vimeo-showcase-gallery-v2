@@ -20,9 +20,11 @@ let editingId = null;
 // ── Init ──────────────────────────────────────────────────
 
 function init() {
-  // Restore saved credentials (fall back to hardcoded defaults)
-  document.getElementById('bin-id').value     = localStorage.getItem('vsg_bin_id')     || DEFAULT_BIN_ID;
-  document.getElementById('master-key').value = localStorage.getItem('vsg_master_key') || DEFAULT_MASTER_KEY;
+  // Always use hardcoded defaults (overwrite any stale localStorage values)
+  localStorage.setItem('vsg_bin_id',     DEFAULT_BIN_ID);
+  localStorage.setItem('vsg_master_key', DEFAULT_MASTER_KEY);
+  document.getElementById('bin-id').value     = DEFAULT_BIN_ID;
+  document.getElementById('master-key').value = DEFAULT_MASTER_KEY;
 
   // Auto-connect
   connect();
