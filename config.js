@@ -109,18 +109,24 @@ async function save() {
   config.galleriesSection.enabled = document.getElementById('toggle-galleries').checked;
 
   try {
+    const body = JSON.stringify(config);
     const res = await fetch(`${JSONBIN_BASE}/${binId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         'X-Master-Key': masterKey,
+        'X-Bin-Versioning': 'false',
       },
-      body: JSON.stringify(config),
+      body,
     });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => ({}));
+      throw new Error(`${res.status} — ${errBody.message || 'unknown error'}`);
+    }
     toast('Saved!', 'ok');
   } catch (err) {
     toast(`Save failed: ${err.message}`, 'error');
+    console.error('Save error:', err.message);
   } finally {
     btn.disabled = false;
     btn.textContent = 'Save Changes';
