@@ -40,9 +40,10 @@ function toFeaturedUrl(url) {
 // ── Init ──────────────────────────────────────────────────
 
 async function init() {
-  // Read bin ID from URL hash (sharing link) and persist it
+  // Read bin ID from URL hash (sharing link) and persist it.
+  // JSONBin IDs are 24-char hex strings — ignore section anchors like #galleries.
   const hash = location.hash.slice(1);
-  if (hash.length > 8) {
+  if (/^[a-f0-9]{24}$/i.test(hash)) {
     localStorage.setItem('vsg_bin_id', hash);
     history.replaceState(null, '', location.pathname);
   }
