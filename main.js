@@ -305,8 +305,12 @@ function initGalleryToggles() {
         player.setAttribute('aria-hidden', 'true');
         btn.setAttribute('aria-expanded', 'false');
         btn.querySelector('.btn-label').textContent = 'Open Gallery';
-        const iframe = player.querySelector('.showcase-iframe');
-        if (iframe) iframe.style.height = '';
+        // Reset iframe height only after the collapse animation finishes (555ms),
+        // otherwise the height change mid-animation causes an inconsistent jump.
+        setTimeout(() => {
+          const iframe = player.querySelector('.showcase-iframe');
+          if (iframe) iframe.style.height = '';
+        }, 560);
         if (savedScrollY !== null) {
           setTimeout(() => {
             window.scrollTo({ top: savedScrollY, behavior: 'smooth' });
