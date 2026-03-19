@@ -4,7 +4,9 @@
    Share URL: https://your-site.pages.dev/#YOUR_BIN_ID
    ───────────────────────────────────────────── */
 
-const JSONBIN_BASE = 'https://api.jsonbin.io/v3/b';
+const JSONBIN_BASE   = 'https://api.jsonbin.io/v3/b';
+// TODO: remove before production
+const DEFAULT_BIN_ID = '69bb6594b7ec241ddc7ff79f';
 
 // ── Utils ─────────────────────────────────────────────────
 
@@ -48,7 +50,7 @@ async function init() {
     history.replaceState(null, '', location.pathname);
   }
 
-  const binId = localStorage.getItem('vsg_bin_id');
+  const binId = localStorage.getItem('vsg_bin_id') || DEFAULT_BIN_ID;
 
   if (!binId) {
     document.getElementById('hero-sub').innerHTML =

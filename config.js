@@ -4,7 +4,10 @@
    Credentials stored in localStorage (this browser only).
    ───────────────────────────────────────────── */
 
-const JSONBIN_BASE = 'https://api.jsonbin.io/v3/b';
+const JSONBIN_BASE   = 'https://api.jsonbin.io/v3/b';
+// TODO: remove hardcoded credentials before making this repo private/production
+const DEFAULT_BIN_ID     = '69bb6594b7ec241ddc7ff79f';
+const DEFAULT_MASTER_KEY = '$2a$10$/oFYyWCPDCYTfXU86lyTw.OIBbHu3vS.iJNC57yhzZ9uG/faYuqle';
 
 let config = {
   featuredSection:  { enabled: true },
@@ -17,14 +20,12 @@ let editingId = null;
 // ── Init ──────────────────────────────────────────────────
 
 function init() {
-  // Restore saved credentials
-  document.getElementById('bin-id').value     = localStorage.getItem('vsg_bin_id')     || '';
-  document.getElementById('master-key').value = localStorage.getItem('vsg_master_key') || '';
+  // Restore saved credentials (fall back to hardcoded defaults)
+  document.getElementById('bin-id').value     = localStorage.getItem('vsg_bin_id')     || DEFAULT_BIN_ID;
+  document.getElementById('master-key').value = localStorage.getItem('vsg_master_key') || DEFAULT_MASTER_KEY;
 
-  // Auto-connect if credentials exist
-  if (localStorage.getItem('vsg_bin_id') && localStorage.getItem('vsg_master_key')) {
-    connect();
-  }
+  // Auto-connect
+  connect();
 
   // Bindings
   document.getElementById('connect-btn').addEventListener('click', connect);
