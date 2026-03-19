@@ -327,9 +327,6 @@ function initGalleryToggles() {
         player.setAttribute('aria-hidden', 'false');
         btn.setAttribute('aria-expanded', 'true');
         btn.querySelector('.btn-label').textContent = 'Close Gallery';
-        setTimeout(() => {
-          btn.closest('.gallery-block').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
       }
     });
   });
