@@ -117,6 +117,14 @@ function applyConfig({ featuredSection, galleriesSection, showcases = [] }) {
   initScrollFeatures(navIds);
   initReveal();
   initGalleryToggles();
+
+  // Scroll to the hash section now that content is visible.
+  // Browsers scroll to #hash before dynamic content renders, so we redo it here.
+  const hash = location.hash.slice(1);
+  if (hash) {
+    const target = document.getElementById(hash);
+    if (target) setTimeout(() => target.scrollIntoView({ behavior: 'instant' }), 0);
+  }
 }
 
 // ── Render: featured folder cards ─────────────────────────
@@ -281,8 +289,6 @@ function initReveal() {
 // ── Gallery toggle ────────────────────────────────────────
 
 function initGalleryToggles() {
-  let savedScrollY = null;
-
   document.querySelectorAll('.toggle-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const player = document.getElementById(btn.dataset.target);
@@ -305,20 +311,22 @@ function initGalleryToggles() {
         player.setAttribute('aria-hidden', 'true');
         btn.setAttribute('aria-expanded', 'false');
         btn.querySelector('.btn-label').textContent = 'Open Gallery';
-        // Reset iframe height only after the collapse animation finishes (555ms),
-        // otherwise the height change mid-animation causes an inconsistent jump.
+        // Reset iframe height after collapse animation finishes so the
+        // height change doesn't disrupt the animation mid-way.
         setTimeout(() => {
           const iframe = player.querySelector('.showcase-iframe');
           if (iframe) iframe.style.height = '';
         }, 560);
-        if (savedScrollY !== null) {
-          setTimeout(() => {
-            window.scrollTo({ top: savedScrollY, behavior: 'smooth' });
-            savedScrollY = null;
-          }, 560);
-        }
+        // After collapsing, scroll the gallery header back into view
+        // if it ended up off-screen during playback.
+        setTimeout(() => {
+          const block = btn.closest('.gallery-block');
+          const rect  = block.getBoundingClientRect();
+          if (rect.top < 0 || rect.top > window.innerHeight * 0.8) {
+            block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 560);
       } else {
-        savedScrollY = window.scrollY;
         player.classList.add('open');
         player.setAttribute('aria-hidden', 'false');
         btn.setAttribute('aria-expanded', 'true');
