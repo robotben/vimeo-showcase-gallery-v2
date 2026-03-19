@@ -28,7 +28,7 @@ function escHtml(str) {
 function toEmbedUrl(url) {
   try {
     const u = new URL(url);
-    const path = u.pathname.replace(/\/$/, '').replace(/\/embed2?$/, '');
+    const path = u.pathname.replace(/\/$/, '').replace(/\/embed2?/g, '');
     return `https://vimeo.com${path}/embed2`;
   } catch { return ''; }
 }
@@ -36,7 +36,7 @@ function toEmbedUrl(url) {
 function toFeaturedUrl(url) {
   try {
     const u = new URL(url);
-    const path = u.pathname.replace(/\/$/, '').replace(/\/embed2?$/, '');
+    const path = u.pathname.replace(/\/$/, '').replace(/\/embed2?/g, '');
     return `https://vimeo.com${path}?share=copy&fl=sm&fe=fs`;
   } catch { return url; }
 }
